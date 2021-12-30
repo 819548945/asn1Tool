@@ -8,7 +8,10 @@
         <script src="../base64.js"></script>
         <script src="../hex.js"></script>
         <script src="../asn1.js"></script>
+        <script src="../BaseTool.js"></script>
         <script src="../X509CertificateTool.js"></script>
+       
+        
         <script>
             var SM2cer="MIIBeTCCASCgAwIBAgIGAXimRuuIMAoGCCqBHM9VAYN1MBwxCzAJBgNVBAYTAkNOMQ0wCwYDVQQDDARsaWNoMB4XDTIwMTIzMTE2MDAwMFoXDTMwMTIzMTE1NTk1OVowHjELMAkGA1UEBhMCQ04xDzANBgNVBAMMBkdNVEVTVDBZMBMGByqGSM49AgEGCCqBHM9VAYItA0IABPeTHUX6jjGoEALjHqjnTAYszoLQvwkvqcoB08WShIKfcAwCBCySZdsaYvTer/ue38vOjhbeEmqGnzFTLsgSZR2jTDBKMAsGA1UdDwQEAwIGwDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwQwCQYDVR0TBAIwADARBglghkgBhvhCAQEEBAMCB4AwCgYIKoEcz1UBg3UDRwAwRAIgZO5yetVVhWexGmnFK03TlP5a6z50+j2KqJBz7/ltLyMCIFwa2q9C12K90+SGD2hhMwr2KgW+NCalKkCHI/olQWKI";
             var RSAcer="MIICWjCCAUKgAwIBAgIGAXimRurMMA0GCSqGSIb3DQEBCwUAMBwxCzAJBgNVBAYTAkNOMQ0wCwYDVQQDDARsaWNoMB4XDTIwMTIzMTE2MDAwMFoXDTMwMTIzMTE1NTk1OVowHzELMAkGA1UEBhMCQ04xEDAOBgNVBAMMB1JTQVRFU1QwgbUwDQYJKoZIhvcNAQEBBQADgaMAMIGfAoGXCZ5rsBsc368VYP5ovtJlNY0hQ+ncTAcObDV3wMiCFwM1hqI96XasbIA3UTAwvxs7mBzZnjOzygpMRK+1pkNLamcU+nwDbwYTj58IybI3WJHuZTQpSrwzjEdiCpYx7esx0c9XPdp2ouXxEYhM7GCv98xqdB4/B1P78a/mDkCI+oRj8MJU18P2lqCOe/99yBp16Z2l4mD0VQIDAQABow0wCzAJBgNVHRMEAjAAMA0GCSqGSIb3DQEBCwUAA4IBAQAj0dklYFMwNfWHq7fIapRAEYssMXSK0nsNzhK901bUSoPcgyn/nos+pVrcgIrkenABTjP1amobpbd+rNYdceoRmtTXcTh/4LtWjbLex2rJR9wgnoGWz+rjZvhKO4BbAUdhZYERnobY4aYJqtbVzr2VhX/e1cdm2JWkw8AVl+UX3I3+jB+PRaj5ec+YT9iEmuC77cqfQnauoeEEywapEl0teiwUtsFQk8+Ooy/JQROCE+GcoOavBFcvWIKwBLDFGjZpyg18jVYqpHSGngpVlYd217t18/AQP1NXji9Oc5+3WYsPiNuTExk7XLdUCOTHYHNi2I7+A0Yf5iGJuc6czAb/";
@@ -43,6 +46,6 @@
         DN:<strong id="dn"></strong><br>
         有效期:<strong id="time"></strong><br>
         颁发者:<strong id="issuer"></strong><br>
-        签名算法:<strong id="algorithm"></strong> 
+        签名摘要算法:<strong id="algorithm"></strong> 
     </body>
 </html>

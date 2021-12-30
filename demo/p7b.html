@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>p7b test</title>
+        <meta charset="UTF-8">
+        <script src="../int10.js"></script>
+        <script src="../oids.js"></script>
+        <script src="../base64.js"></script>
+        <script src="../hex.js"></script>
+        <script src="../asn1.js"></script>
+        <script src="../BaseTool.js"></script>
+        <script src="../X509CertificateTool.js"></script>
+        <script src="../PKCS7Tool.js"></script>
+       
+        <script>
+            var p7bBase64="MIAGCSqGSIb3DQEHAqCAMIACAQExADCABgkqhkiG9w0BBwEAAKCAMIIBbTCCAROgAwIBAgIGAXbbDsqKMAoGCCqBHM9VAYN1MBwxCzAJBgNVBAYTAkNOMQ0wCwYDVQQDDARsaWNoMB4XDTIwMTIzMTE2MDAwMFoXDTM1MTIzMTE1NTk1OVowHDELMAkGA1UEBhMCQ04xDTALBgNVBAMMBGxpY2gwWTATBgcqhkjOPQIBBggqgRzPVQGCLQNCAAQeyRxm12te20LpKRFOlSiM5dDrcDtfbcTeCNetzeH37VATYu/WM3Wq4vnvb32RCMLqurGfCYx4aqWXL11Vn/dGo0EwPzALBgNVHQ8EBAMCBsAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMEMBEGCWCGSAGG+EIBAQQEAwIHgDAKBggqgRzPVQGDdQNIADBFAiEA27AoJSd+Ra9MvOLwr6eW1wTpxSzqL35gU+wjzy5/SVACIE8RPYc9pXxnWI6+hdsduNosJRVvpKow/ofBmQKON4QXMIIBejCCASCgAwIBAgIGAX3gOOCJMAoGCCqBHM9VAYN1MBwxCzAJBgNVBAYTAkNOMQ0wCwYDVQQDDARsaWNoMB4XDTIwMTIzMTE2MDAwMFoXDTIxMTIzMTE1NTk1OVowHjELMAkGA1UEBhMCQ04xDzANBgNVBAMMBkdNVEVTVDBZMBMGByqGSM49AgEGCCqBHM9VAYItA0IABGnzVxSpFrT1DCHVA98ojOczDHqCHMUAp9jGLDA6qbNmw9Hi0NOk6GEhxacSavFPqb+r8IiMbWmSz/Oz3Yhd02WjTDBKMAsGA1UdDwQEAwIGwDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwQwCQYDVR0TBAIwADARBglghkgBhvhCAQEEBAMCB4AwCgYIKoEcz1UBg3UDSAAwRQIgN+PN73NMQe6zb+BSgqq9NzE36UvlZ4CbiqXBlZI8fB8CIQDjB8GyCW18t6ihjYyAomdQ+oEoHfp7sCIkPONHjY+mKwAAMQAAAAAAAAA=";
+            function setP7B(){
+                document.getElementById("p7b").value=p7bBase64;
+            }
+            function read(){
+                var cer=document.getElementById("p7b").value;
+                if(cer==""){
+                    alert("证书链不能为空");
+                    return;
+                }
+                var p7b=PKCS7Tool.loadPKCS7(cer);
+                var certificateChain= p7b.getCertificateChain();
+                var s="";
+                s+="-----------证书链getCertificateChain-----------<br>";
+                for(var i=0;i<certificateChain.length;i++){
+                    s+="-----------证书"+i+"-----------<br>";
+                    s+="SN:"+certificateChain[i].getSerial()+"<br>";
+                    s+="DN:"+certificateChain[i].getSubject()+"<br>";
+                    s+="有效期:"+new Date(certificateChain[i].getNotBefore()) +"-"+new Date(certificateChain[i].getNotAfter())+"<br>";
+                    s+="颁发者:"+certificateChain[i].getIssuer()+"<br>";
+                    s+="签名摘要算法:"+ certificateChain[i].getAlgorithm()+"<br>";
+                    s+="cerBase64:"+ certificateChain[i].getBase64()+"<br>"; 
+                }
+                s+="-----------证书getCertificate-----------<br>";
+                var cert= p7b.getCertificate()
+                s+="SN:"+cert.getSerial()+"<br>";
+                    s+="DN:"+cert.getSubject()+"<br>";
+                    s+="有效期:"+new Date(cert.getNotBefore()) +"-"+new Date(cert.getNotAfter())+"<br>";
+                    s+="颁发者:"+cert.getIssuer()+"<br>";
+                    s+="签名摘要算法:"+ cert.getAlgorithm()+"<br>";
+                    s+="cerBase64:"+ cert.getBase64()+"<br>"; 
+                document.getElementById("text").innerHTML= s;        
+            }
+        </script>
+    </head>
+    <body>
+        PKCS#7B base64证书链<br>
+        <button onclick="setP7B()">加载p7b</button><br>
+      
+        <textarea id="p7b" style="height: 300px;width: 300px;">
+             </textarea><br><button onclick="read()">读取</button><br>
+        <strong id="text"></strong><br>
+        
+    </body>
+</html>

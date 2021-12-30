@@ -1,0 +1,24 @@
+<html>
+<head>
+<style>
+    button{
+        width:100px;
+        height: 30px;
+        margin: 20px 0px 20px 10px;
+    }
+</style>
+<script>
+   function setRight(url){
+       document.getElementById("ifraRight").src=url
+   
+   }
+</script>
+</head>
+<body>
+    <div style="width: 10%;float: left;border-right:black solid 1px;height: 100%;">
+       <button onclick="setRight('../demo/x509.html')">X.509</button><br>
+       <button onclick="setRight('../demo/p7b.html')">p7b</button>
+    </div>
+    <iframe style="width: 89%;float: right;height: 100%;" name="ifraRight" id="ifraRight"  src="../demo/x509.html" frameborder="0"  scrolling="yes"></iframe>
+</body>
+</html>
